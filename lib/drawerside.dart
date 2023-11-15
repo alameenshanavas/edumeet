@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_edumeet/dairy.dart';
+import 'package:flutter_edumeet/leave.dart';
 import 'package:flutter_edumeet/profile.dart';
+import 'package:flutter_edumeet/staffdirct.dart';
 import 'package:flutter_edumeet/timetable.dart';
 
 class drawer extends StatelessWidget {
@@ -58,22 +60,39 @@ class drawer extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>proscreen()));
             },
             trailing: Icon(Icons.expand_more),
-          ),ListTile(
+          ),
+          ListTile(
             leading: Icon(Icons.school),
             title: Text('Assignment'),
-            trailing: Icon(Icons.expand_more),
-          ),ListTile(
+            trailing: Icon(Icons.expand_more),        
+          ),
+          ListTile(
             leading: Icon(Icons.auto_stories),
-            title: Text('Library'),
+            title: Text('Staff Directory'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>staff()));
+            },
             trailing: Icon(Icons.expand_more),
           ),ListTile(
             leading: Icon(Icons.check_box),
             title: Text('Dairy'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>dairyscreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Diary()));
             },
             trailing: Icon(Icons.expand_more),
+            
+            
           ),ListTile(
+            leading: Icon(Icons.tab),
+            title: Text('Leave Apply'),
+            onTap: (){
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>Leaveapply()));
+            },
+            trailing: Icon(Icons.expand_more),
+            
+            
+          ),
+          ListTile(
             leading: Icon(Icons.edit_document),
             title: Text('Time Table'),
             onTap: (){

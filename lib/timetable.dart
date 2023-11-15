@@ -15,9 +15,7 @@ class tabalescreen extends StatelessWidget {
         backgroundColor: Colors.red,
         title: Text('Time Table Report'),    
       ),
-      body: Row(
-        children: [TabBar(tabs: [Tab(text: 'sunday',)])],
-      ),
+     
       
     );
   }
