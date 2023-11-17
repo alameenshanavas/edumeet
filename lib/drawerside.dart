@@ -3,9 +3,10 @@ import 'package:flutter_edumeet/dairy.dart';
 import 'package:flutter_edumeet/leave.dart';
 import 'package:flutter_edumeet/profile.dart';
 import 'package:flutter_edumeet/staffdirct.dart';
+import 'package:flutter_edumeet/subject.dart';
 import 'package:flutter_edumeet/timetable.dart';
 
-class drawer extends StatelessWidget {
+class  drawer extends StatelessWidget {
   const drawer({
     super.key,
   });
@@ -63,14 +64,20 @@ class drawer extends StatelessWidget {
           ),
           ListTile(
             leading: Icon(Icons.school),
-            title: Text('Assignment'),
+            title: Text('Subject'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Subject()));
+            },
             trailing: Icon(Icons.expand_more),        
           ),
           ListTile(
             leading: Icon(Icons.auto_stories),
             title: Text('Staff Directory'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>staff()));
+               Navigator.push(context, MaterialPageRoute(builder: (context)=>StaffDirectory(
+
+
+               )));
             },
             trailing: Icon(Icons.expand_more),
           ),ListTile(

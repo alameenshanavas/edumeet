@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
 
-class StaffDirectory extends StatelessWidget {
-  const StaffDirectory({super.key});
+class Subject extends StatefulWidget {
+  const Subject({super.key});
 
   @override
+  State<Subject> createState() => _SubjectState();
+}
+
+class _SubjectState extends State<Subject> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Scaffold(backgroundColor: const Color.fromARGB(255, 230, 227, 227),
       appBar: AppBar(backgroundColor: Colors.red,
-        title: Text("Staff Directory"),
-      ),
-      backgroundColor: const Color.fromARGB(255, 226, 224, 224),
-      body: Column(
+        title: Text('Subject'),
+      ), body: Column(
         children: [
           Padding(
             padding: const EdgeInsets.only(top: 25,right: 180,bottom: 20),
             child: Align(
               
-              child: Row(
-                children: [
-                  Text("Class: 4 A"),
-                  Text('Subject Code: 101')
-                ],
-              )),
+              child: Text("Subject Teacher")),
           ),
           Expanded(
             child: ListView.builder(

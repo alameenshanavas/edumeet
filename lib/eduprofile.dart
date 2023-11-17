@@ -27,6 +27,7 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Color.fromARGB(255, 237, 231, 231),
       drawer: drawer(),
       appBar: AppBar(
+        elevation: 0,
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 20, 3),
         title: Text(
@@ -46,7 +47,7 @@ class _ProfileState extends State<Profile> {
                   borderRadius: BorderRadius.vertical(
                       bottom: Radius.elliptical(
                           MediaQuery.of(context).size.width, 100.0)),
-                  color: Colors.red),
+                  color:  Color.fromARGB(255, 248, 20, 3)),
               child: Stack(
                 children: [
                   Container(
