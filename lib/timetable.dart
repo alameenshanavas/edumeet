@@ -1,24 +1,44 @@
 import 'package:flutter/material.dart';
 
-class tabalescreen extends StatelessWidget {
-  const tabalescreen({super.key});
+
+
+class Timetable extends StatelessWidget {
+  const Timetable({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: 10),
-          child: Icon(Icons.chat_outlined),
-        )
-      ],
-        backgroundColor: Colors.red,
-        title: Text('Time Table Report'),    
+    return  DefaultTabController(length: 6,
+     child: Scaffold(
+      backgroundColor: Color.fromARGB(255, 208, 206, 206),
+      appBar: AppBar(backgroundColor: Colors.red,
+      actions: [IconButton(onPressed: (){},
+       icon: Icon(Icons.chat_outlined))],
+        title: Text("Time Table Report"),
+        
       ),
-      body: TabBar(tabs: [Tab(text: 'sunday',),
-      Tab(text: 'sunday',),
-      Tab(text: 'sunday',)]),
+      body: TabBar(
+        isScrollable: true,
+        indicatorColor: Colors.red,
+        tabs: [
+        Tab(
+          text: 'Monday',
+        ),
+        Tab(
+          text: 'Tuesday',
+        ),
+        Tab(
+          text: 'Wednesday',
+        ),
+        Tab(
+          text: 'Thursday',
+        ),
+        Tab(
+          text: 'Friday',
+        ),
+        
+      ]),
       
-    );
+     )
+     );
   }
 }

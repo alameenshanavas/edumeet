@@ -14,7 +14,9 @@ class Leaveapply extends StatelessWidget {
           title: Text("Assigned Leave"),
           actions: [IconButton(onPressed: (){},
            icon: Icon(Icons.search))],
-           bottom: TabBar(tabs: [
+           bottom: TabBar(
+            indicatorColor: Colors.white,
+            tabs: [
             Tab(text: "Assigned Leave",),
             Tab(text: "Leave Applay",)
            ]),

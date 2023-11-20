@@ -103,7 +103,7 @@ class  drawer extends StatelessWidget {
             leading: Icon(Icons.edit_document),
             title: Text('Time Table'),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>tabalescreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Timetable()));
             },
             trailing: Icon(Icons.expand_more),
           ),ListTile(
