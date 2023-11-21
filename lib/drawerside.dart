@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_edumeet/dairy.dart';
 import 'package:flutter_edumeet/leave.dart';
+import 'package:flutter_edumeet/login.dart';
 import 'package:flutter_edumeet/profile.dart';
 import 'package:flutter_edumeet/staffdirct.dart';
 import 'package:flutter_edumeet/subject.dart';
+
 import 'package:flutter_edumeet/timetable.dart';
 
 class  drawer extends StatelessWidget {
@@ -112,6 +114,9 @@ class  drawer extends StatelessWidget {
           ),ListTile(
             leading: Icon(Icons.logout),
             title: Text('Logout'),
+            onTap: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+            },
           )
           ],
       ),

@@ -234,9 +234,11 @@ class _LeaveState extends State<Leave> {
                     final selectedTime=await showTimePicker(
                       context: context,
                      initialTime: TimeOfDay.now());
+                     
                      if(selectedTime != null&&selectedTime != timenow){
                      setState(() {
                       time.text=selectedTime.format(context);
+                      
                    
                      }
                      );

@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_edumeet/friday.dart';
+import 'package:flutter_edumeet/monday.dart';
+import 'package:flutter_edumeet/thursday.dart';
+import 'package:flutter_edumeet/tuesday.dart';
+import 'package:flutter_edumeet/wednesday.dart';
 
 
 
@@ -14,9 +19,7 @@ class Timetable extends StatelessWidget {
       actions: [IconButton(onPressed: (){},
        icon: Icon(Icons.chat_outlined))],
         title: Text("Time Table Report"),
-        
-      ),
-      body: TabBar(
+        bottom: TabBar(
         isScrollable: true,
         indicatorColor: Colors.red,
         tabs: [
@@ -36,7 +39,22 @@ class Timetable extends StatelessWidget {
           text: 'Friday',
         ),
         
+        
+        
       ]),
+      
+      
+        
+      ),
+      body: TabBarView(children: [
+        Monday(),
+        Tuesday(),
+        Wednesday(),
+        Thursday(),
+        Friday()
+        
+      ]),
+      
       
      )
      );

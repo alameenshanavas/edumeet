@@ -1,10 +1,31 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-class proscreen extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+
+class proscreen extends StatefulWidget {
   const proscreen({super.key});
 
   @override
+  State<proscreen> createState() => _proscreenState();
+}
+
+class _proscreenState extends State<proscreen> {
+  
+  @override
   Widget build(BuildContext context) {
+     File? _profileImage;
+Future<void> _getImage(ImageSource source) async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(source: source);
+
+    if (pickedFile != null) {
+      setState(() {
+        _profileImage = File(pickedFile.path);
+      });
+    }
+  }
+
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 227, 225, 225),
       body: ListView(
@@ -29,94 +50,64 @@ class proscreen extends StatelessWidget {
                 height: 150,
                 width: double.infinity,
                 color: Colors.red),
-            Padding(
-              padding: const EdgeInsets.only(top: 100),
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: CircleAvatar(
-                  radius: 50,
-                  child: CircleAvatar(
-                    backgroundImage: AssetImage('assets /images/edumeet3.jpg'),
-                    radius: 48,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: InkWell(
-                        child: CircleAvatar(
-                          backgroundColor: Colors.white,
-                          radius: 15,
-                          child: Icon(
-                            Icons.add_a_photo,
-                            size: 18,
-                            color: Colors.black87,
-                          ),
-                        ),
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              backgroundColor: Colors.white,
-                              elevation: 10,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              builder: (BuildContext context) {
-                                return SizedBox(
-                                  height: 200,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                          color: Colors.red,
-                                          height: 40,
-                                          alignment: Alignment.center,
-                                          width: double.infinity,
-                                          child: Text('Choose Source')),
-                                          SizedBox(height: 30,),
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                        children: [
-                                          Column(
-                                            children: [
-                                              CircleAvatar(
-                                                  radius: 30,
-                                                  backgroundColor: Colors.red,
-                                                  child: IconButton.outlined(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                        Icons.photo_camera),
-                                                    color: Colors.white,
-                                                  )),
-                                                  Text('Camera')
-                                            ],
-                                          ),
-                                        
-                                   
-                                      
-                                          Column(
-                                            children: [
-                                              CircleAvatar(
-                                                  radius: 30,
-                                                  backgroundColor: Colors.red,
-                                                  child: IconButton.outlined(
-                                                    onPressed: () {},
-                                                    icon: Icon(
-                                                        Icons.photo_album),
-                                                    color: Colors.white,
-                                                  )),
-                                                  Text('Gallery')
-                                            ],
-                                          )]
-                                          )
-                                        ],
-                                      
-                                    
-                                  ),
-                                );
-                              });
-                        },
+
+  GestureDetector(
+              onTap: _pickProfileImage,
+              child: _profileImage == null
+                  ? CircleAvatar(
+                      radius: 80,
+                      backgroundColor: Colors.grey,
+                      child: Icon(
+                        Icons.camera_alt,
+                        size: 40,
+                        color: Colors.white,
                       ),
+                    )
+                  : CircleAvatar(
+                      radius: 80,
+                      backgroundImage: FileImage(_profileImage!),
                     ),
-                  ),
-                ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: FloatingActionButton(
+                onPressed: _pickProfileImage,
+                tooltip: 'Pick Profile Picture',
+                child: Icon(Icons.camera_alt),
               ),
             ),
+
+            // Padding(
+            //   padding: const EdgeInsets.only(top: 100),
+            //   child: Align(
+            //     alignment: Alignment.bottomCenter,
+            //     child: CircleAvatar(
+            //       radius: 50,
+            //       child: CircleAvatar(
+            //         backgroundImage: AssetImage('assets /images/edumeet3.jpg'),
+            //         radius: 48,
+            //         child: Align(
+            //           alignment: Alignment.bottomRight,
+            //           child: InkWell(
+            //             child: CircleAvatar(
+            //               backgroundColor: Colors.white,
+            //               radius: 15,
+            //               child: Icon(
+            //                 Icons.add_a_photo,
+            //                 size: 18,
+            //                 color: Colors.black87,
+            //               ),
+            //             ),
+            //             onTap: () {
+                          
+            //               pickprofileimage(context);
+            //             },
+            //           ),
+            //         ),
+            //       ),
+            //     ),
+            //   ),
+            // ),
           ]),
           Center(
             child: Column(
@@ -277,5 +268,67 @@ class proscreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _pickProfileImage() async {
+    showModalBottomSheet(
+                            context: context,
+                            backgroundColor: Colors.white,
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            builder: (BuildContext context) {
+                              return SizedBox(
+                                height: 200,
+                                child: Column(
+                                  children: [
+                                    Container(
+                                        color: Colors.red,
+                                        height: 40,
+                                        alignment: Alignment.center,
+                                        width: double.infinity,
+                                        child: Text('Choose Source')),
+                                        SizedBox(height: 30,),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            CircleAvatar(
+                                                radius: 30,
+                                                backgroundColor: Colors.red,
+                                                child: IconButton.outlined(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                      Icons.photo_camera),
+                                                  color: Colors.white,
+                                                )),
+                                                Text('Camera')
+                                          ],
+                                        ),
+                                      
+                                 
+                                    
+                                        Column(
+                                          children: [
+                                            CircleAvatar(
+                                                radius: 30,
+                                                backgroundColor: Colors.red,
+                                                child: IconButton.outlined(
+                                                  onPressed: () {},
+                                                  icon: Icon(
+                                                      Icons.photo_album),
+                                                  color: Colors.white,
+                                                )),
+                                                Text('Gallery')
+                                          ],
+                                        )]
+                                        )
+                                      ],
+                                    
+                                  
+                                ),
+                              );
+                            });
   }
 }
