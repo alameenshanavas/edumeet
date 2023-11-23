@@ -7,6 +7,8 @@ class Profile extends StatefulWidget {
 
   @override
   State<Profile> createState() => _ProfileState();
+
+  static fromjson(data) {}
 }
 
 class _ProfileState extends State<Profile> {
