@@ -12,15 +12,19 @@ class _SubjectState extends State<Subject> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 212, 211, 211),
-      appBar: AppBar(backgroundColor: Colors.red,
-        title: Text("Subject"),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        backgroundColor: Colors.red,
+        title: Text("Subject",style: TextStyle(color: Colors.white),),
         actions: [
           Row(
             children: [
                 IconButton(onPressed: (){},
-                 icon: Icon(Icons.search)),
+                 icon: Icon(Icons.search,color: Colors.white,)),
                  IconButton(onPressed: (){},
-                  icon: Icon(Icons.chat_bubble_outline))
+                  icon: Icon(Icons.chat_bubble_outline,color: Colors.white,))
             ],
           )
         ],

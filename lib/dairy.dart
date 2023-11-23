@@ -7,15 +7,19 @@ class Diary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.red,
-        title: Text("Diary"),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        backgroundColor: Colors.red,
+        title: Text("Diary",style: TextStyle(color: Colors.white),),
         actions: [
           Row(
             children: [
               IconButton(onPressed: (){},
-               icon: Icon(Icons.search)),
+               icon: Icon(Icons.search,color: Colors.white,)),
                IconButton(onPressed: (){}
-               , icon: Icon(Icons.chat_outlined))
+               , icon: Icon(Icons.chat_outlined,color: Colors.white,))
             ],
           )
         ],
@@ -28,7 +32,11 @@ class Diary extends StatelessWidget {
             padding: const EdgeInsets.only(left: 230),
             child: TextButton(
             onPressed: (){
-              showDialog(context: context, builder: (context) => AlertDialog(
+              showDialog(
+                
+                context: context, builder: (context) => 
+                AlertDialog(
+                  backgroundColor: Colors.white,
                   title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text("Add Diaries"),
@@ -71,7 +79,7 @@ class Diary extends StatelessWidget {
                   )
                 ),
                 onPressed: (){}, 
-              child: Text("Submit"))
+              child: Text("Submit",style: TextStyle(color: Colors.white),))
             ],
                   ),
                    
@@ -132,13 +140,13 @@ class Diary extends StatelessWidget {
                             onPressed: (){},
                             style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(Colors.orange)),
-                           child: Text('Edit')),
+                           child: Text('Edit',style: TextStyle(color: Colors.white),)),
                            SizedBox(width: 20,),
                          ElevatedButton(onPressed: (){},
                          style: ButtonStyle(backgroundColor: MaterialStatePropertyAll(Colors.red)
                           
                          ),
-                          child: Text('Delete')) 
+                          child: Text('Delete',style: TextStyle(color: Colors.white),)) 
                         ]
                       ),
                     ),

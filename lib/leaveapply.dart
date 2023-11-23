@@ -50,7 +50,7 @@ class _LeaveState extends State<Leave> {
                   Padding(
                     padding: const EdgeInsets.only(top: 20),
                     child: Container(
-                      height: 400,
+                      height: 450,
                       width: double.infinity,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
@@ -144,12 +144,12 @@ class _LeaveState extends State<Leave> {
                             child: Column(
                               children: [Text("Attachment"),
                             SizedBox(
-                              height: 30,
+                              height: 40,
                               width: 100,
                               child: Padding(
                                 padding: const EdgeInsets.only(top: 10),
                                 child: ElevatedButton(onPressed: (){},
-                                 child: Text("data"),
+                                 child: Text("data",style: TextStyle(color: Colors.white),),
                                  style: ElevatedButton.styleFrom(
                                         primary: Colors.grey
                                        )),
@@ -169,14 +169,14 @@ class _LeaveState extends State<Leave> {
                             
                               children: [
                                 ElevatedButton(onPressed: (){},
-                                 child: Text("Edit"),
+                                 child: Text("Edit",style: TextStyle(color: Colors.white),),
                                  style: ElevatedButton.styleFrom(
                               primary: Colors.orange
                              )),
                                  Padding(
                                    padding: const EdgeInsets.only(left: 10),
                                    child: ElevatedButton(onPressed: (){},
-                                    child: Text("Delete"),
+                                    child: Text("Delete",style: TextStyle(color: Colors.white),),
                                      style: ElevatedButton.styleFrom(
                               primary: Colors.red
                              )),
@@ -205,7 +205,10 @@ class _LeaveState extends State<Leave> {
                     borderRadius: BorderRadius.circular(20)
                   ))),
               onPressed: (){
-                showDialog(context: context, builder: (context) => AlertDialog(
+                showDialog(
+                  context: context, builder: (context) => 
+                  AlertDialog(
+                    backgroundColor: Colors.white,
             title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text("Leave Application"),
@@ -321,7 +324,7 @@ class _LeaveState extends State<Leave> {
                
                 SizedBox(height: 10,),
                 TextField(
-                  maxLines: 3,
+                  maxLines: 2,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Reason",
@@ -350,13 +353,13 @@ class _LeaveState extends State<Leave> {
                     )
                   ),
                   onPressed: (){}, 
-                child: Text("Submit"))
+                child: Text("Submit",style: TextStyle(color: Colors.white),))
               ],
             ),
            
           ),);
               },
-              child: Text('Add A Leave Application')),
+              child: Text('Add A Leave Application',style: TextStyle(color: Colors.white),)),
            ),
          ),
         ],

@@ -15,7 +15,7 @@ class  drawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Drawer(
+    return Drawer(backgroundColor: Colors.white,
       child: ListView(
         children: [DrawerHeader(
           decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class  drawer extends StatelessWidget {
                   radius: 55,
                   child: CircleAvatar(
                     backgroundImage: AssetImage('assets /images/edumeet3.jpg'),
-                    radius: 53,),
+                    radius: 55,),
                 ),
               ),Align(alignment: Alignment.topCenter,
                 child: Padding(
@@ -54,27 +54,31 @@ class  drawer extends StatelessWidget {
           ),
           ),
           ListTile(
-            leading: Icon(Icons.dashboard),
-            title: Text('Dashboard'),
+            leading: Icon(Icons.dashboard,color: Colors.black54,),
+            title: Text('Dashboard',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
           ),ListTile(
-            leading: Icon(Icons.person_search_rounded),
-            title: Text('Profile'),
+            leading: Icon(Icons.person_search_rounded,color: Colors.black54,),
+            title: Text('Profile',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>proscreen()));
             },
-            trailing: Icon(Icons.expand_more),
+            trailing: Icon(Icons.expand_more,),
           ),
           ListTile(
-            leading: Icon(Icons.school),
-            title: Text('Subject'),
+            leading: Icon(Icons.school,color: Colors.black54,),
+            title: Text('Subject',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Subject()));
             },
             trailing: Icon(Icons.expand_more),        
           ),
           ListTile(
-            leading: Icon(Icons.auto_stories),
-            title: Text('Staff Directory'),
+            leading: Icon(Icons.auto_stories,color: Colors.black54,),
+            title: Text('Staff Directory',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: (){
                Navigator.push(context, MaterialPageRoute(builder: (context)=>StaffDirectory(
 
@@ -83,8 +87,9 @@ class  drawer extends StatelessWidget {
             },
             trailing: Icon(Icons.expand_more),
           ),ListTile(
-            leading: Icon(Icons.check_box),
-            title: Text('Dairy'),
+            leading: Icon(Icons.check_box,color: Colors.black54,),
+            title: Text('Dairy',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Diary()));
             },
@@ -92,8 +97,9 @@ class  drawer extends StatelessWidget {
             
             
           ),ListTile(
-            leading: Icon(Icons.tab),
-            title: Text('Leave Apply'),
+            leading: Icon(Icons.tab,color: Colors.black54,),
+            title: Text('Leave Apply',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: (){
                Navigator.push(context, MaterialPageRoute(builder: (context)=>Leaveapply()));
             },
@@ -102,18 +108,21 @@ class  drawer extends StatelessWidget {
             
           ),
           ListTile(
-            leading: Icon(Icons.edit_document),
-            title: Text('Time Table'),
+            leading: Icon(Icons.edit_document,color: Colors.black54,),
+            title: Text('Time Table',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Timetable()));
             },
             trailing: Icon(Icons.expand_more),
           ),ListTile(
-            leading: Icon(Icons.video_call),
-            title: Text('Online Class'),
+            leading: Icon(Icons.video_call,color: Colors.black54,),
+            title: Text('Online Class',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
           ),ListTile(
-            leading: Icon(Icons.logout),
-            title: Text('Logout'),
+            leading: Icon(Icons.logout,color: Colors.black54,),
+            title: Text('Logout',style: TextStyle(fontWeight: FontWeight.bold,
+            color: Colors.black54),),
             onTap: (){
               Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
             },

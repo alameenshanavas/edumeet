@@ -27,13 +27,15 @@ class _ProfileState extends State<Profile> {
       backgroundColor: Color.fromARGB(255, 237, 231, 231),
       drawer: drawer(),
       appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.white),
         elevation: 0,
         centerTitle: true,
         backgroundColor: Color.fromARGB(255, 248, 20, 3),
         title: Text(
-          'EDUMEET',
+          'EDUMEET',style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),
         ),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.chat))],
+        actions: [IconButton(onPressed: () {}, 
+        icon: Icon(Icons.chat,))],
       ),
       body: ListView(
         
@@ -59,6 +61,7 @@ class _ProfileState extends State<Profile> {
                     height: 350,
                     width: double.infinity,
                     child: Card(
+                      color: Colors.white,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(35)),
                       child: Column(
@@ -150,7 +153,7 @@ class _ProfileState extends State<Profile> {
                       child: CircleAvatar(
                         backgroundImage:
                             AssetImage('assets /images/edumeet3.jpg'),
-                        radius: 50,
+                        radius: 52,
                       ),
                     ),
                   ),
@@ -163,7 +166,7 @@ class _ProfileState extends State<Profile> {
                       child: CircleAvatar(
                         backgroundImage:
                             AssetImage('assets /images/edumeet4.png'),
-                        radius: 30,
+                        radius: 32,
                       ),
                     ),
                   ),

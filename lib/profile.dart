@@ -11,9 +11,6 @@ class proscreen extends StatefulWidget {
 }
 
 class _proscreenState extends State<proscreen> {
-  
-  @override
-  Widget build(BuildContext context) {
      File? _profileImage;
 Future<void> _getImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -25,6 +22,9 @@ Future<void> _getImage(ImageSource source) async {
       });
     }
   }
+  @override
+  Widget build(BuildContext context) {
+  
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, 227, 225, 225),
@@ -51,63 +51,38 @@ Future<void> _getImage(ImageSource source) async {
                 width: double.infinity,
                 color: Colors.red),
 
-  GestureDetector(
-              onTap: _pickProfileImage,
-              child: _profileImage == null
-                  ? CircleAvatar(
-                      radius: 80,
-                      backgroundColor: Colors.grey,
-                      child: Icon(
-                        Icons.camera_alt,
-                        size: 40,
-                        color: Colors.white,
-                      ),
-                    )
-                  : CircleAvatar(
-                      radius: 80,
-                      backgroundImage: FileImage(_profileImage!),
-                    ),
-            ),
+  Padding(
+    padding: const EdgeInsets.only(top: 80),
+    child: Align(alignment: Alignment.bottomCenter,
+      child: GestureDetector(
+                  onTap: _pickProfileImage,
+                  child: _profileImage == null
+                      ? CircleAvatar(
+                          radius: 60,
+                          backgroundColor: Colors.grey,
+                         backgroundImage: AssetImage('assets /images/edumeet3.jpg'),
+                        )
+                      : CircleAvatar(
+                          radius: 60,
+                          backgroundImage: FileImage(_profileImage!),
+                        ),
+                ),
+    ),
+  ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: FloatingActionButton(
-                onPressed: _pickProfileImage,
-                tooltip: 'Pick Profile Picture',
-                child: Icon(Icons.camera_alt),
+              padding: const EdgeInsets.only(top: 160,left: 70),
+              child: Align(alignment: 
+              Alignment.bottomCenter,
+                child: IconButton(splashColor: Colors.red,
+                color: Colors.black,
+                  onPressed: _pickProfileImage,
+                  tooltip: 'Pick Profile Picture',
+                  icon: Icon(Icons.add_a_photo,),
+                  
+                ),
               ),
             ),
 
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 100),
-            //   child: Align(
-            //     alignment: Alignment.bottomCenter,
-            //     child: CircleAvatar(
-            //       radius: 50,
-            //       child: CircleAvatar(
-            //         backgroundImage: AssetImage('assets /images/edumeet3.jpg'),
-            //         radius: 48,
-            //         child: Align(
-            //           alignment: Alignment.bottomRight,
-            //           child: InkWell(
-            //             child: CircleAvatar(
-            //               backgroundColor: Colors.white,
-            //               radius: 15,
-            //               child: Icon(
-            //                 Icons.add_a_photo,
-            //                 size: 18,
-            //                 color: Colors.black87,
-            //               ),
-            //             ),
-            //             onTap: () {
-                          
-            //               pickprofileimage(context);
-            //             },
-            //           ),
-            //         ),
-            //       ),
-            //     ),
-            //   ),
-            // ),
           ]),
           Center(
             child: Column(
@@ -298,7 +273,9 @@ Future<void> _getImage(ImageSource source) async {
                                                 radius: 30,
                                                 backgroundColor: Colors.red,
                                                 child: IconButton.outlined(
-                                                  onPressed: () {},
+                                                  onPressed: () {
+                                                  _getImage(ImageSource.camera);
+                                                  },
                                                   icon: Icon(
                                                       Icons.photo_camera),
                                                   color: Colors.white,
@@ -315,7 +292,8 @@ Future<void> _getImage(ImageSource source) async {
                                                 radius: 30,
                                                 backgroundColor: Colors.red,
                                                 child: IconButton.outlined(
-                                                  onPressed: () {},
+                                                  onPressed: () { _getImage(ImageSource.gallery);
+                                                  Navigator.pop(context);},
                                                   icon: Icon(
                                                       Icons.photo_album),
                                                   color: Colors.white,

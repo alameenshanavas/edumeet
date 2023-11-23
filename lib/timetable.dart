@@ -15,13 +15,21 @@ class Timetable extends StatelessWidget {
     return  DefaultTabController(length: 6,
      child: Scaffold(
       backgroundColor: Color.fromARGB(255, 208, 206, 206),
-      appBar: AppBar(backgroundColor: Colors.red,
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        backgroundColor: Colors.red,
       actions: [IconButton(onPressed: (){},
        icon: Icon(Icons.chat_outlined))],
-        title: Text("Time Table Report"),
+        title: Text("Time Table Report",style: TextStyle(
+          color: Colors.white
+        ),),
         bottom: TabBar(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.white,
         isScrollable: true,
-        indicatorColor: Colors.red,
+        indicatorColor: Colors.white,
         tabs: [
         Tab(
           text: 'Monday',

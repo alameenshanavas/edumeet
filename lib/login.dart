@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_edumeet/eduprofile.dart';
 import 'package:flutter_edumeet/forgotpass.dart';
 
-void main(List<String> args) {
-  runApp(Login());
-}
+
 class Login extends StatefulWidget {
   
   const Login({super.key});
@@ -26,8 +24,9 @@ class _LoginState extends State<Login> {
           padding: const EdgeInsets.only(left: 150,top: 30),
           child: Text("Login",style: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 25,
-            color: const Color.fromARGB(255, 241, 24, 8)),),
+            
+            fontSize: 30,
+            color: Colors.red),),
         ),Padding(
           padding: const EdgeInsets.only(top: 30,left: 10,right: 10),
           child: TextField(
@@ -58,10 +57,10 @@ class _LoginState extends State<Login> {
           child: ElevatedButton(onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context)=>Profile()));
           },
-           child: Text('Login'),
+           child: Text('Login',style: TextStyle(color: Colors.white),),
           style: ElevatedButton.styleFrom(
             fixedSize: Size(double.infinity, 50),
-            backgroundColor: const Color.fromARGB(255, 27, 26, 26)),
+            backgroundColor: Colors.black),
             ),
         )
         ],

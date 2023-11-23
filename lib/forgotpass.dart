@@ -33,9 +33,9 @@ class _ForgotState extends State<Forgot> {
             child: ElevatedButton(onPressed: (){
               Navigator.pop(context);
             },
-             child: Text('Submit'),
+             child: Text('Submit',style: TextStyle(color: Colors.white),),
              style: ElevatedButton.styleFrom(fixedSize: Size(330, 50),
-             backgroundColor: const Color.fromARGB(255, 24, 24, 24)),),
+             backgroundColor: Colors.black),),
           )
         ],
         ),

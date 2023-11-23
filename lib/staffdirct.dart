@@ -6,22 +6,28 @@ class StaffDirectory extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.red,
-        title: Text("Staff Directory"),
+      appBar: AppBar(
+        iconTheme: IconThemeData(
+          color: Colors.white
+        ),
+        backgroundColor: Colors.red,
+        title: Text("Staff Directory",style: TextStyle(color: Colors.white),),
       ),
       backgroundColor: const Color.fromARGB(255, 226, 224, 224),
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 25,right: 180,bottom: 20),
-            child: Align(
-              
-              child: Row(
-                children: [
-                  Text("Class: 4 A"),
-                  Text('Subject Code: 101')
-                ],
-              )),
+            padding: const EdgeInsets.only(top: 25,bottom: 20),
+            child: Row(mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text("Class: 4 A",style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),),
+                Text('Subject Code: 101',style: TextStyle(
+                  fontWeight: FontWeight.bold
+                ),)
+              ],
+            ),
           ),
           Expanded(
             child: ListView.builder(
