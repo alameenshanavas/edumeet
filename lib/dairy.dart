@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 
-class Diary extends StatelessWidget {
+class Diary extends StatefulWidget {
   const Diary({super.key});
 
+  @override
+  State<Diary> createState() => _DiaryState();
+}
+
+class _DiaryState extends State<Diary> {
+  var daat="";
+ var datee=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,10 +58,24 @@ class Diary extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(),
                 child: TextField(
+                  controller: datee,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "enter date",
-                    suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.calendar_month))
+                    suffixIcon: IconButton(onPressed: ()async{
+                      final selectedDate=await showDatePicker(
+                  context: context,
+                 initialDate: DateTime(2000),
+                  firstDate: DateTime(2000),
+                   lastDate: DateTime(2030)
+                   );
+                   setState() {
+                    daat=DateFormat.MMMEd().format(selectedDate!);
+                    //  dat=DateFormat.MMMEd().format(selectedDate!);
+                     datee.text=daat;
+                   };
+
+                    }, icon: Icon(Icons.calendar_month))
                   ),
                   
                 ),

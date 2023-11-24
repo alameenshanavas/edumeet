@@ -200,59 +200,57 @@ class _ProfileState extends State<Profile> {
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Expanded(
-              child: Container(
-                // height: 750,
-                // width: double.infinity,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30), color: Colors.white),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5, left: 10),
-                          child: Icon(
-                            Icons.notifications_active,
-                            color: Colors.amber,
-                          ),
+            child: Container(
+              // height: 750,
+              // width: double.infinity,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30), color: Colors.white),
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, left: 10),
+                        child: Icon(
+                          Icons.notifications_active,
+                          color: Colors.amber,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 5),
-                          child: Text(
-                            'Notice',
-                            style: TextStyle(fontSize: 17),
-                          ),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Container(
-                          height: 700,
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                                top: 10, left: 10, right: 10),
-                            child: ListView.separated(
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                                itemBuilder: (context, index) =>
-                                    InkWell(
-                                      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Noticepage())),
-                                      child: ListTile(title: Text(lists[index]),
-                                      subtitle: Text(list1[index]),
-                                      trailing: Icon(Icons.arrow_forward_ios),),
-                                    ),
-                                separatorBuilder: (context, index) => Divider(
-                                      color: Colors.black,
-                                    ),
-                                itemCount: 5),
-                          ),
-                        )
-                      ],
-                    )
-                  ],
-                ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10, top: 5),
+                        child: Text(
+                          'Notice',
+                          style: TextStyle(fontSize: 17),
+                        ),
+                      )
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Container(
+                        height: 700,
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                              top: 10, left: 10, right: 10),
+                          child: ListView.separated(
+                            physics: NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                              itemBuilder: (context, index) =>
+                                  InkWell(
+                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Noticepage())),
+                                    child: ListTile(title: Text(lists[index]),
+                                    subtitle: Text(list1[index]),
+                                    trailing: Icon(Icons.arrow_forward_ios),),
+                                  ),
+                              separatorBuilder: (context, index) => Divider(
+                                    color: Colors.black,
+                                  ),
+                              itemCount: 5),
+                        ),
+                      )
+                    ],
+                  )
+                ],
               ),
             ),
           )

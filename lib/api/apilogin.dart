@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_edumeet/eduprofile.dart';
-import 'package:flutter_edumeet/loginmode.dart';
+
+
+import 'package:flutter_edumeet/models/loginmodel.dart';
 import 'package:flutter_edumeet/url.dart';
 
 class Apiclass{
@@ -12,6 +13,7 @@ class Apiclass{
     dio.options = BaseOptions(
       baseUrl: url.baseUrl,
       responseType: ResponseType.json,
+      
     );
   }
   
@@ -29,14 +31,5 @@ class Apiclass{
       
     
   }
-  getdata() async {
-    final result = await dio.get(url.baseUrl+url.profileend);
-    final getproduct = Profile.fromjson(result.data);
-    print('------------$getproduct');
-    if (getproduct.data !=null) {
-      
-    }else{
-      
-    }
-  }
+
 }
