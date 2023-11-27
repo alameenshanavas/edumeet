@@ -39,7 +39,7 @@ class _NoticepageState extends State<Noticepage> {
                     padding: const EdgeInsets.only(top: 10,left: 10,),
                     child: Align(alignment: Alignment.centerLeft,
                       child: Text('Programming Contest',style: TextStyle(
-                        fontSize: 15
+                        fontSize: 15,fontWeight: FontWeight.bold
                       ),),
                     ),
                   ),Padding(

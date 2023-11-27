@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_edumeet/Notice.dart';
+import 'package:flutter_edumeet/api/apilogin.dart';
 import 'package:flutter_edumeet/drawerside.dart';
+import 'package:flutter_edumeet/models/profilemodel.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -13,9 +15,25 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    dataProf();
+  }
+  String? name;
+  String? reg;
+  String? rollnumber;
+  String? dob;
+  String? parent;
+  String? division;
+  String? parents;
+ String? classname;
+  
+  @override
   Widget build(BuildContext context) {
+    
     final lists = [
-      'Programming contest',
+      'Programming Contest',
       'Parents Meeting',
       'Collage Day',
       'Collage Election',
@@ -71,7 +89,7 @@ class _ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.only(top: 50),
                             child: Text(
-                              'Kiran RV',
+                              name.toString(),
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -79,7 +97,7 @@ class _ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.only(top: 3),
                             child: Text(
-                              'Reg.No:1234',
+                              'Reg.No:$reg',
                               style: TextStyle(color: Colors.black45),
                             ),
                           ),
@@ -94,7 +112,7 @@ class _ProfileState extends State<Profile> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 30),
                                     child: Text(
-                                      'Class-4',
+                                      'Class-$classname',
                                       style: TextStyle(color: Colors.black45),
                                     ),
                                   ),
@@ -104,7 +122,7 @@ class _ProfileState extends State<Profile> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 20),
                                     child: Text(
-                                      'Roll No-12',
+                                      'Roll No-$rollnumber',
                                       style: TextStyle(color: Colors.black45),
                                     ),
                                   ),
@@ -123,7 +141,7 @@ class _ProfileState extends State<Profile> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.only(right: 10),
-                                      child: Text('Division-A',
+                                      child: Text('Division-$division',
                                           style:
                                               TextStyle(color: Colors.black45)),
                                     ),
@@ -131,7 +149,7 @@ class _ProfileState extends State<Profile> {
                                       height: 15,
                                     ),
                                     Text(
-                                      'DOB-04-08-2002',
+                                      'DOB-$dob',
                                       style: TextStyle(color: Colors.black45),
                                     ),
                                     SizedBox(
@@ -177,7 +195,7 @@ class _ProfileState extends State<Profile> {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(
-                        'Madhu PK',
+                        parents.toString(),
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -258,5 +276,20 @@ class _ProfileState extends State<Profile> {
       ),
     );
   }
+  void dataProf() async{
+ final result =  await Apiclass().profUserApi();
+
+ setState(() {
+   name = result!.data[0].firstName;
+      reg = result.data[0].regNumber;
+      rollnumber = result.data[0].rollNumber.toString();
+       print("66666666$rollnumber");
+      dob = result.data[0].dob;
+      parent = result.data[0].parent.toString();
+      division = result.data[0].divisions.name;
+      parents = result.data[0].parents.firstName;
+      classname = result.data[0].classname.name;
+ });
+}
 }
 
