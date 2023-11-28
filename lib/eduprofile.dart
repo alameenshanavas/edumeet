@@ -21,13 +21,16 @@ class _ProfileState extends State<Profile> {
     dataProf();
   }
   String? name;
+  String? mname; 
+  String? lname;
   String? reg;
   String? rollnumber;
   String? dob;
   String? parent;
   String? division;
   String? parents;
- String? classname;
+  String? lparents;
+  String? classname;
   
   @override
   Widget build(BuildContext context) {
@@ -89,7 +92,7 @@ class _ProfileState extends State<Profile> {
                           Padding(
                             padding: const EdgeInsets.only(top: 50),
                             child: Text(
-                              name.toString(),
+                             "$name $mname$lname",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 20),
                             ),
@@ -195,7 +198,7 @@ class _ProfileState extends State<Profile> {
                     child: Align(
                       alignment: Alignment.bottomCenter,
                       child: Text(
-                        parents.toString(),
+                        "$parents $lparents",
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -246,7 +249,7 @@ class _ProfileState extends State<Profile> {
                   Column(
                     children: [
                       Container(
-                        height: 700,
+                        height: 950,
                         child: Padding(
                           padding: const EdgeInsets.only(
                               top: 10, left: 10, right: 10),
@@ -256,7 +259,8 @@ class _ProfileState extends State<Profile> {
                               itemBuilder: (context, index) =>
                                   InkWell(
                                     onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>Noticepage())),
-                                    child: ListTile(title: Text(lists[index]),
+                                    child: ListTile(title: Text(lists[index],
+                                    style: TextStyle(fontWeight: FontWeight.bold),),
                                     subtitle: Text(list1[index]),
                                     trailing: Icon(Icons.arrow_forward_ios),),
                                   ),
@@ -281,6 +285,8 @@ class _ProfileState extends State<Profile> {
 
  setState(() {
    name = result!.data[0].firstName;
+   mname = result.data[0].middleName;
+   lname = result.data[0].lastName;
       reg = result.data[0].regNumber;
       rollnumber = result.data[0].rollNumber.toString();
        print("66666666$rollnumber");
@@ -288,6 +294,7 @@ class _ProfileState extends State<Profile> {
       parent = result.data[0].parent.toString();
       division = result.data[0].divisions.name;
       parents = result.data[0].parents.firstName;
+      lparents = result.data[0].parents.lastName;
       classname = result.data[0].classname.name;
  });
 }

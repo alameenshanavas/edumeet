@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_edumeet/api/apilogin.dart';
+import 'package:flutter_edumeet/models/profilemodel.dart';
 import 'package:image_picker/image_picker.dart';
 
 class proscreen extends StatefulWidget {
@@ -11,6 +13,32 @@ class proscreen extends StatefulWidget {
 }
 
 class _proscreenState extends State<proscreen> {
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    datadetail();
+  }
+  String? name;
+  String? mname;
+  String? lname;
+  String? gender;
+  String? reg;
+  String? parents;
+  String? lparents;
+  String? classname;
+  int? division;
+  int? rollNumber;
+  String? dob;
+  String? phone;
+  String? email;
+  String? address;
+  String? place;
+  String? post;
+  String? bgroup;
+  int? state;
+  int? country;
+
+
      File? _profileImage;
 Future<void> _getImage(ImageSource source) async {
     final picker = ImagePicker();
@@ -88,27 +116,90 @@ Future<void> _getImage(ImageSource source) async {
             child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 15),
+                  padding: const EdgeInsets.only(top: 10),
                   child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 145),
+                        padding: const EdgeInsets.only(left: 145,bottom: 15),
                         child: Text(
-                          'Kiran RV',
+                          '$name $mname$lname',
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 17),
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 10),
-                        child: Icon(Icons.edit),
+                        padding: const EdgeInsets.only(left: 10,bottom: 7),
+                        child: IconButton(onPressed: (){
+                          showModalBottomSheet(
+                            context: context,
+                            elevation: 10,
+                            backgroundColor: Colors.white,
+                           builder: (BuildContext context){
+                            return SizedBox(
+                              height: 400,
+                              width: double.infinity,
+                              child: Column(
+                                children: [Padding(
+                                  padding: const EdgeInsets.only(top: 50,right: 10,left: 10),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      hintText: 'First Name'
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 25,right: 10,left: 10),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      hintText: 'Middle Name'
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 25,right: 10,left: 10),
+                                  child: TextField(
+                                    decoration: InputDecoration(
+                                      border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10)
+                                      ),
+                                      hintText: 'Last Name'
+                                    ),
+                                  ),
+                                ),
+                               SizedBox(
+                                height: 70,
+                                width: 330,
+                                 child: Padding(
+                                   padding: const EdgeInsets.only(top: 30),
+                                   child: ElevatedButton(
+                                    
+                                    onPressed: (){},
+                                    style: ElevatedButton.styleFrom(
+                                      primary: Colors.red
+                                    ),
+                                    child: Text('SAVE',style: TextStyle(color: Colors.white),)),
+                                 ),
+                               )
+                                ],
+                                
+                              ),
+                            );
+                           });
+                        },
+                         icon: Icon(Icons.edit)),
                       )
                     ],
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 5),
-                  child: Text('Reg No:12345'),
+                  padding: const EdgeInsets.only(bottom: 5),
+                  child: Text('Reg No:$reg'),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
@@ -137,7 +228,7 @@ Future<void> _getImage(ImageSource source) async {
                             child: Column(
                               children: [
                                 Text(
-                                  'Madhu PK',
+                                  '$parents $lparents',
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 15),
@@ -180,12 +271,12 @@ Future<void> _getImage(ImageSource source) async {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(': male'),
-                            Text(': 4'),
-                            Text(': A'),
-                            Text(': 12'),
-                            Text(': 10-5-2002'),
-                            Text(': +91-9876543210')
+                            Text(': $gender'),
+                            Text(': $classname'.toString()),
+                            Text(': $division'),
+                            Text(': $rollNumber'),
+                            Text(': $dob'),
+                            Text(': $phone')
                           ],
                         )
                       ],
@@ -226,14 +317,14 @@ Future<void> _getImage(ImageSource source) async {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(': students@irohub.com'),
+                      Text(': $email'),
                       Text(': +91-8086740064'),
                       Text(': 1st Floor,Trust Building'),
-                      Text(': Ernakulam'),
-                      Text(': 778787'),
-                      Text(': B+'),
-                      Text(': Kerala'),
-                      Text(': India')
+                      Text(': $place'),
+                      Text(': $post'),
+                      Text(': $bgroup'),
+                      Text(': $state'),
+                      Text(': $country')
                     ],
                   )
                 ],
@@ -243,6 +334,31 @@ Future<void> _getImage(ImageSource source) async {
         ],
       ),
     );
+  }
+  void datadetail ()async{
+  final result = await Apiclass().detatilUserApi(); 
+  setState(() {
+    name = result?.data.firstName;
+    mname = result?.data.middleName;
+    lname = result?.data.lastName;
+    gender = result?.data.gender;
+    reg = result?.data.regNumber;
+    parents = result?.data.parents.firstName;
+    lparents = result?.data.parents.lastName;
+    classname = result?.data.classname.name;
+    division = result?.data.division;
+    rollNumber = result?.data.rollNumber;
+    dob = result?.data.dob;
+    phone = result?.data.phone;
+    email = result?.data.email;
+    address = result?.data.address;
+    place = result?.data.place;
+    post = result?.data.post;
+    bgroup = result?.data.blood;
+    state = result?.data.state;
+    country = result?.data.country;
+    
+  });
   }
 
   Future<void> _pickProfileImage() async {
@@ -307,6 +423,7 @@ Future<void> _getImage(ImageSource source) async {
                                   
                                 ),
                               );
-                            });
+                            }
+                            );
   }
 }

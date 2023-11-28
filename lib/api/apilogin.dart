@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_edumeet/models/detailsmodel.dart';
 
 
 import 'package:flutter_edumeet/models/loginmodel.dart';
@@ -44,6 +45,17 @@ class Apiclass{
           'Authorization': 'Bearer $tok '
         }));
     return Profiledata.fromJson(result.data); 
+  }
+  Future<Detailsmodel?> detatilUserApi() async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+    var tok = share.getString('token');
+    final result = await dio.get(url.baseUrl + url.detailsend,
+        options: Options(headers: {
+          'Content': 'application/json',
+          'Accepts': 'application/json',
+          'Authorization': 'Bearer $tok '
+        }));
+    return Detailsmodel.fromJson(result.data); 
   }
 
 }
