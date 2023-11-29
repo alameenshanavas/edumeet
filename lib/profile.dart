@@ -1,9 +1,14 @@
+// ignore_for_file: curly_braces_in_flow_control_structures
+
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_edumeet/api/apilogin.dart';
 import 'package:flutter_edumeet/models/profilemodel.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 
 class proscreen extends StatefulWidget {
   const proscreen({super.key});
@@ -13,10 +18,16 @@ class proscreen extends StatefulWidget {
 }
 
 class _proscreenState extends State<proscreen> {
+  final firstnamecontroller = TextEditingController();
+  final middlenamecontroller = TextEditingController();
+  final lastnamecontroller = TextEditingController();
+  var getvalu="";
+  
   void initState() {
     // TODO: implement initState
     super.initState();
     datadetail();
+   
   }
   String? name;
   String? mname;
@@ -37,6 +48,7 @@ class _proscreenState extends State<proscreen> {
   String? bgroup;
   int? state;
   int? country;
+  String? first;
 
 
      File? _profileImage;
@@ -142,6 +154,7 @@ Future<void> _getImage(ImageSource source) async {
                                 children: [Padding(
                                   padding: const EdgeInsets.only(top: 50,right: 10,left: 10),
                                   child: TextField(
+                                    controller: firstnamecontroller,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10)
@@ -153,6 +166,7 @@ Future<void> _getImage(ImageSource source) async {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 25,right: 10,left: 10),
                                   child: TextField(
+                                    controller: middlenamecontroller,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10)
@@ -164,6 +178,7 @@ Future<void> _getImage(ImageSource source) async {
                                 Padding(
                                   padding: const EdgeInsets.only(top: 25,right: 10,left: 10),
                                   child: TextField(
+                                    controller: lastnamecontroller,
                                     decoration: InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(10)
@@ -179,7 +194,11 @@ Future<void> _getImage(ImageSource source) async {
                                    padding: const EdgeInsets.only(top: 30),
                                    child: ElevatedButton(
                                     
-                                    onPressed: (){},
+                                    onPressed: (){
+                                      
+                                     dataedit();
+
+                                    },
                                     style: ElevatedButton.styleFrom(
                                       primary: Colors.red
                                     ),
@@ -335,6 +354,68 @@ Future<void> _getImage(ImageSource source) async {
       ),
     );
   }
+
+ void dataedit() async{
+    final first_name = firstnamecontroller.text;
+    final middle_name = middlenamecontroller.text;
+    final last_name = lastnamecontroller.text;
+
+    if(first_name.isEmpty==true){
+    showErrorMessage('Please Enter Firstnmae');
+    }
+    else if(middle_name.isEmpty==true){
+      showErrorMessage('Please Enter Middlename');
+    }
+    else if(last_name.isEmpty==true){
+      showErrorMessage('please enter Lastname');
+    }
+    else{
+          final formdata = FormData.fromMap({
+            'first_name': first_name,
+            'middle_name': middle_name,
+            'last_name' : last_name,
+          });
+          print("$formdata");
+
+          final result = await Apiclass().editUserApi(formdata);
+          if (result !=null){
+            if(result.status ==1){
+              showSuccessMessage("Edit Successful");
+       
+
+            } else {
+              showErrorMessage("Error");
+            }
+          }
+
+    }
+  }
+  
+  void showErrorMessage(String message){
+    MotionToast.error(
+      title: Text('Error',style: TextStyle(fontWeight: FontWeight.bold),),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: true,
+      description: Text(message)).show(context);
+  }
+
+  void showSuccessMessage(String message){
+    MotionToast.success(
+      title: Text('Success',style: TextStyle(fontWeight: FontWeight.bold),),
+      position: MotionToastPosition.top,
+      barrierColor: Colors.black.withOpacity(0.3),
+      width: 300,
+      height: 80,
+      dismissable: true,
+      description: Text(message)).show(context);
+  }
+
+
+
+
   void datadetail ()async{
   final result = await Apiclass().detatilUserApi(); 
   setState(() {

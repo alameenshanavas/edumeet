@@ -48,7 +48,7 @@ class _HomescreenState extends State<Homescreen> {
               "EDUMEET",
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
           ),

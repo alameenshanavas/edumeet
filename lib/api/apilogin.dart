@@ -1,5 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_edumeet/models/detailsmodel.dart';
+import 'package:flutter_edumeet/models/diariesmodel.dart';
+import 'package:flutter_edumeet/models/editnamemodel.dart';
 
 
 import 'package:flutter_edumeet/models/loginmodel.dart';
@@ -19,6 +21,8 @@ class Apiclass{
       
     );
   }
+  
+
   
 
 
@@ -56,6 +60,39 @@ class Apiclass{
           'Authorization': 'Bearer $tok '
         }));
     return Detailsmodel.fromJson(result.data); 
+  }
+  Future<Editnamedata?>editUserApi(FormData formdata)async{
+    try {
+          SharedPreferences share = await SharedPreferences.getInstance();
+
+var tok = share.getString('token');
+      final result = await dio.post(url.editnameend, data: formdata,
+      options: Options(headers: {
+        'Content': 'application/json',
+        'Accepts': 'application/json',
+        'Authorization': 'Bearer $tok '
+      }));
+      return Editnamedata.fromJson((result.data));
+    } on DioException 
+    catch (e) {
+      print(e);
+      
+    }
+   
+      
+    
+  }
+
+  Future<Diariesdata?> DiariUserApi() async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+    var tok = share.getString('token');
+    final result = await dio.get(url.baseUrl + url.diariesend,
+        options: Options(headers: {
+          'Content': 'application/json',
+          'Accepts': 'application/json',
+          'Authorization': 'Bearer $tok '
+        }));
+    return Diariesdata.fromJson(result.data); 
   }
 
 }

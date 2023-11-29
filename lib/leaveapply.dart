@@ -195,7 +195,8 @@ class _LeaveState extends State<Leave> {
            }),
          ),
          
-         SizedBox(width: double.infinity,height: 50,
+         SizedBox(width: double.infinity,
+         height: 50,
            child: Padding(
              padding: const EdgeInsets.only(left: 10,right: 10,bottom: 10),
              child: ElevatedButton(
@@ -223,7 +224,8 @@ class _LeaveState extends State<Leave> {
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "Annual",
-                    suffixIcon: IconButton(onPressed: (){}, icon: Icon(Icons.expand_more))
+                    suffixIcon: IconButton(onPressed: (){}, 
+                    icon: Icon(Icons.expand_more))
                   ),
                   
                 ),
@@ -341,7 +343,7 @@ class _LeaveState extends State<Leave> {
                     
                   ),
                 ),
-                SizedBox(height: 15,),
+                SizedBox(height: 10,),
                 ElevatedButton(
                   style: ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll(const Color.fromARGB(255, 142, 141, 141)),
@@ -359,7 +361,8 @@ class _LeaveState extends State<Leave> {
            
           ),);
               },
-              child: Text('Add A Leave Application',style: TextStyle(color: Colors.white),)),
+              child: Text('Add A Leave Application',
+              style: TextStyle(color: Colors.white),)),
            ),
          ),
         ],

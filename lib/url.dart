@@ -4,4 +4,6 @@ class URL {
   String loginend = 'login';
   String profileend = 'profile';
   String detailsend = 'details';
+  String editnameend = 'profile/edit_name';
+  String diariesend = 'diaries';
 }
