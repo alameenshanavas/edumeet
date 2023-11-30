@@ -6,4 +6,5 @@ class URL {
   String detailsend = 'details';
   String editnameend = 'profile/edit_name';
   String diariesend = 'diaries';
+  String updateend = 'diaries/update';
 }

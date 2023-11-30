@@ -1,37 +1,30 @@
 class Diariesdata {
   int? status;
-  List<Data>? data;
+  List<Datadiari>? data;
 
   Diariesdata({this.status, this.data});
 
   Diariesdata.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <Datadiari>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add( Datadiari.fromJson(v));
       });
     }
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
+ 
 }
 
-class Data {
+class Datadiari {
   int? id;
   String? note;
   String? date;
 
-  Data({this.id, this.note, this.date});
+  Datadiari({this.id, this.note, this.date});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Datadiari.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     note = json['note'];
     date = json['date'];

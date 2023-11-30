@@ -5,7 +5,7 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_edumeet/api/apilogin.dart';
-import 'package:flutter_edumeet/models/profilemodel.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:motion_toast/motion_toast.dart';
 import 'package:motion_toast/resources/arrays.dart';
@@ -132,7 +132,7 @@ Future<void> _getImage(ImageSource source) async {
                   child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 145,bottom: 15),
+                        padding: const EdgeInsets.only(left: 130,bottom: 15),
                         child: Text(
                           '$name $mname$lname',
                           style: TextStyle(
@@ -354,8 +354,7 @@ Future<void> _getImage(ImageSource source) async {
       ),
     );
   }
-
- void dataedit() async{
+  void dataedit() async{
     final first_name = firstnamecontroller.text;
     final middle_name = middlenamecontroller.text;
     final last_name = lastnamecontroller.text;
@@ -391,6 +390,8 @@ Future<void> _getImage(ImageSource source) async {
     }
   }
   
+
+
   void showErrorMessage(String message){
     MotionToast.error(
       title: Text('Error',style: TextStyle(fontWeight: FontWeight.bold),),

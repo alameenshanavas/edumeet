@@ -1,5 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_edumeet/api/apilogin.dart';
+import 'package:flutter_edumeet/models/diariesmodel.dart';
 import 'package:intl/intl.dart';
+import 'package:motion_toast/motion_toast.dart';
+import 'package:motion_toast/resources/arrays.dart';
 
 
 class Diary extends StatefulWidget {
@@ -10,10 +15,27 @@ class Diary extends StatefulWidget {
 }
 
 class _DiaryState extends State<Diary> {
+ var jsonlist=[];
+ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]); 
+
   var daat="";
  var datee=TextEditingController();
+ var date=TextEditingController();
+ var note=TextEditingController();
+
+ void initState() {
+    // TODO: implement initState
+    super.initState();
+    datadiaries();
+    dataupdate();
+   
+  }
+
+  
+
   @override
   Widget build(BuildContext context) {
+   
     return Scaffold(
       appBar: AppBar(
         iconTheme: IconThemeData(
@@ -58,7 +80,8 @@ class _DiaryState extends State<Diary> {
               Padding(
                 padding: const EdgeInsets.only(),
                 child: TextField(
-                  controller: datee,
+                  
+                  controller: date,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: "enter date",
@@ -71,8 +94,8 @@ class _DiaryState extends State<Diary> {
                    );
                    setState() {
                     daat=DateFormat.MMMEd().format(selectedDate!);
-                    //  dat=DateFormat.MMMEd().format(selectedDate!);
-                     datee.text=daat;
+                    // dat=DateFormat.MMMEd().format(selectedDate!);
+                     date.text=daat;
                    };
 
                     }, icon: Icon(Icons.calendar_month))
@@ -82,7 +105,8 @@ class _DiaryState extends State<Diary> {
               ),
               SizedBox(height: 10,),
               TextField(
-                maxLines: 15,
+                controller: note,
+                maxLines: 10,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Enter note",
@@ -100,7 +124,9 @@ class _DiaryState extends State<Diary> {
                     )
                   )
                 ),
-                onPressed: (){}, 
+                onPressed: (){
+                  Navigator.pop(context);
+                }, 
               child: Text("Submit",style: TextStyle(color: Colors.white),))
             ],
                   ),
@@ -115,7 +141,7 @@ class _DiaryState extends State<Diary> {
           ),
           Expanded(
             child: ListView.builder(
-              itemCount: 2,
+              itemCount: jsonlist.length,
               itemBuilder: (context,index){
               return
               Padding(
@@ -138,11 +164,12 @@ class _DiaryState extends State<Diary> {
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
                         color: Colors.grey,
                       ),
-                      child: Center(child: Text('6',style: TextStyle(color: Colors.white38,fontWeight: FontWeight.bold),)),
+                      child: Center(child: Text(jsonlist[index].id.toString(),style: TextStyle(color: Colors.white38,fontWeight: FontWeight.bold),)),
                     ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: Text('Good Day',style: TextStyle(
+                        child: Text((jsonlist)[index].note.toString(),
+                        style: TextStyle(
                        fontWeight: FontWeight.bold),),
                       ),
                   ],
@@ -150,7 +177,7 @@ class _DiaryState extends State<Diary> {
                   
                   Padding(
                     padding: const EdgeInsets.only(left: 40),
-                    child: Text('Date : 04-12-2023'),
+                    child: Text(jsonlist[index].date.toString()),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(top: 15),
@@ -183,5 +210,35 @@ class _DiaryState extends State<Diary> {
         ],
       ),
     );
+  }
+
+
+
+  void dataupdate() async{
+  final _date = date;
+  final _note = note;
+   
+    final formdata = FormData.fromMap({
+            'date': _date,
+            'note': _note,
+            
+          });
+          print("$formdata");
+    
+  }
+  
+
+
+  
+  void datadiaries()async{
+  final result = await Apiclass().DiariUserApi();
+  print("+++++++++$result");
+  setState(() {
+    
+    jsonlist.addAll(result!.data!);
+    
+    print(jsonlist);
+    // id = result?.data.id.toString();
+  });
   }
 }

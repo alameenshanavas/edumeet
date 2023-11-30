@@ -212,7 +212,7 @@ class _LeaveState extends State<Leave> {
                     backgroundColor: Colors.white,
             title: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("Leave Application"),
+                Text("Leave "),
                 IconButton(onPressed: (){
                   Navigator.pop(context);
                 }, icon: Icon(Icons.close))
