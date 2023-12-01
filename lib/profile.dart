@@ -132,7 +132,7 @@ Future<void> _getImage(ImageSource source) async {
                   child: Row(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(left: 130,bottom: 15),
+                        padding: const EdgeInsets.only(left: 120,bottom: 15),
                         child: Text(
                           '$name $mname$lname',
                           style: TextStyle(
@@ -211,7 +211,10 @@ Future<void> _getImage(ImageSource source) async {
                             );
                            });
                         },
-                         icon: Icon(Icons.edit)),
+                         icon: Padding(
+                           padding: const EdgeInsets.only(right: 10),
+                           child: Icon(Icons.edit),
+                         )),
                       )
                     ],
                   ),

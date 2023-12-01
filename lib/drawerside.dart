@@ -1,7 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_edumeet/api/apilogin.dart';
 import 'package:flutter_edumeet/dairy.dart';
 import 'package:flutter_edumeet/leave.dart';
 import 'package:flutter_edumeet/login.dart';
+import 'package:flutter_edumeet/models/logoutmodel.dart';
 import 'package:flutter_edumeet/profile.dart';
 import 'package:flutter_edumeet/staffdirct.dart';
 import 'package:flutter_edumeet/subject.dart';
@@ -124,11 +127,47 @@ class  drawer extends StatelessWidget {
             title: Text('Logout',style: TextStyle(fontWeight: FontWeight.bold,
             color: Colors.black54),),
             onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+             
+                showDialog<String>(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+          title: const Text('Want to Logout?',style: TextStyle(fontSize: 20),),
+          
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'NO',),
+              child: const Text('NO',style: TextStyle(color: Colors.red),),
+            ),
+            TextButton(
+              onPressed: ()async {
+                final result = await Apiclass().logoutUserApi();
+                if(result!= null){
+
+                  if(result.status==1){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
+  
+                  }
+                }
+
+           
+              },
+              child: const Text('YES',style: TextStyle(color: Colors.red),),
+            ),
+          ],
+        ),
+      );
+
+
+
+
+              // Navigator.push(context, MaterialPageRoute(builder: (context)=>Login()));
             },
           )
           ],
       ),
     );
   }
-}
+
+         
+  }
+

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Assignedleave extends StatelessWidget {
-  const Assignedleave({super.key});
+  final list1=["Xmas","Onam","Marriage"];
+  final list2=["10 Days","10 Days","3 Days"];
+  
+   Assignedleave({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,7 +13,7 @@ class Assignedleave extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black12,
       body: ListView.builder(
-        itemCount: 3,
+        itemCount: list1.length,
         itemBuilder: (context, index) {
         return Padding(
           padding: const EdgeInsets.only(top: 10,left: 10,right: 10,),
@@ -24,8 +27,8 @@ class Assignedleave extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text("data"),
-                Text("data")
+                Text(list1[index]),
+                Text(list2[index]),
               ],
             ),
           ),

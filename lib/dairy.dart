@@ -84,7 +84,7 @@ ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]);
                   controller: date,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
-                    labelText: "enter date",
+                    labelText: "Enter Date",
                     suffixIcon: IconButton(onPressed: ()async{
                       final selectedDate=await showDatePicker(
                   context: context,
@@ -92,11 +92,11 @@ ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]);
                   firstDate: DateTime(2000),
                    lastDate: DateTime(2030)
                    );
-                   setState() {
+                   setState(() {
                     daat=DateFormat.MMMEd().format(selectedDate!);
                     // dat=DateFormat.MMMEd().format(selectedDate!);
                      date.text=daat;
-                   };
+                   });
 
                     }, icon: Icon(Icons.calendar_month))
                   ),
@@ -109,7 +109,7 @@ ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]);
                 maxLines: 10,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: "Enter note",
+                  labelText: "Enter Note",
                   
                 ),
               ),
@@ -125,6 +125,7 @@ ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]);
                   )
                 ),
                 onPressed: (){
+                  dataupdate();
                   Navigator.pop(context);
                 }, 
               child: Text("Submit",style: TextStyle(color: Colors.white),))
@@ -164,7 +165,7 @@ ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]);
                         borderRadius: BorderRadius.only(topLeft: Radius.circular(10)),
                         color: Colors.grey,
                       ),
-                      child: Center(child: Text(jsonlist[index].id.toString(),style: TextStyle(color: Colors.white38,fontWeight: FontWeight.bold),)),
+                      child: Center(child: Text(index.toString(),style: TextStyle(color: Colors.white38,fontWeight: FontWeight.bold),)),
                     ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
@@ -215,15 +216,19 @@ ValueNotifier<List<Diariesdata>> diariNotifier= ValueNotifier([]);
 
 
   void dataupdate() async{
-  final _date = date;
-  final _note = note;
+  
+  final _date = date.text;
+  final _note = note.text;
    
     final formdata = FormData.fromMap({
             'date': _date,
             'note': _note,
             
           });
-          print("$formdata");
+          
+          final result = await Apiclass().updateUserApi(formdata);
+          print("..................$result"); 
+          
     
   }
   

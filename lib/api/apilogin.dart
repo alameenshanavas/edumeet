@@ -7,6 +7,7 @@ import 'package:flutter_edumeet/models/editnamemodel.dart';
 
 
 import 'package:flutter_edumeet/models/loginmodel.dart';
+import 'package:flutter_edumeet/models/logoutmodel.dart';
 import 'package:flutter_edumeet/models/profilemodel.dart';
 import 'package:flutter_edumeet/url.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -33,6 +34,7 @@ ValueNotifier<List<Diariesdata>> shopNotifier= ValueNotifier([]);
   Future<Logindata?>loginUserApi(FormData formdata)async{
     try {
       final result = await dio.post(url.loginend, data: formdata);
+      print("login**********$result");
       return Logindata.fromJson((result.data));
     } on DioException 
     catch (e) {
@@ -52,6 +54,7 @@ ValueNotifier<List<Diariesdata>> shopNotifier= ValueNotifier([]);
           'Accepts': 'application/json',
           'Authorization': 'Bearer $tok '
         }));
+        print("profileresult$result");
     return Profiledata.fromJson(result.data); 
   }
   Future<Detailsmodel?> detatilUserApi() async {
@@ -111,6 +114,7 @@ var tok = share.getString('token');
         'Accepts': 'application/json',
         'Authorization': 'Bearer $tok '
       }));
+      print("000000000$result");
       return Updatedata.fromJson((result.data));
     } on DioException 
     catch (e) {
@@ -121,5 +125,18 @@ var tok = share.getString('token');
       
     
   }
+  Future<Logoutdata?> logoutUserApi() async {
+    SharedPreferences share = await SharedPreferences.getInstance();
+    var tok = share.getString('token');
+    final result = await dio.get(url.baseUrl + url.logoutend,
+        options: Options(headers: {
+          'Content': 'application/json',
+          'Accepts': 'application/json',
+          'Authorization': 'Bearer $tok '
+        }));
+     
+    return Logoutdata.fromJson(result.data); 
+  }
+
 
 }

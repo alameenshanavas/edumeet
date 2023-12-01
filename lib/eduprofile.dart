@@ -10,16 +10,17 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 
-  static fromjson(data) {}
+  
 }
 
 class _ProfileState extends State<Profile> {
-  @override
+@override
   void initState() {
     // TODO: implement initState
     super.initState();
-    dataProf();
+   
   }
+  
   String? name;
   String? mname; 
   String? lname;
@@ -34,7 +35,10 @@ class _ProfileState extends State<Profile> {
   
   @override
   Widget build(BuildContext context) {
-    
+     setState(() {
+         dataProf();
+    });
+ 
     final lists = [
       'Programming Contest',
       'Parents Meeting',
@@ -282,8 +286,14 @@ class _ProfileState extends State<Profile> {
   }
   void dataProf() async{
  final result =  await Apiclass().profUserApi();
+ print("result**********${result}");
 
  setState(() {
+  if(result!=null){
+if(result.status==1){
+
+
+  
    name = result!.data[0].firstName;
    mname = result.data[0].middleName;
    lname = result.data[0].lastName;
@@ -296,7 +306,9 @@ class _ProfileState extends State<Profile> {
       parents = result.data[0].parents.firstName;
       lparents = result.data[0].parents.lastName;
       classname = result.data[0].classname.name;
- });
+  }else{
+    print("error");
+  }}});
 }
 }
 
